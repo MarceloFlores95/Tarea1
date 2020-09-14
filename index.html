@@ -4,73 +4,592 @@
 <head>
     <meta charset = "UTF-8">
     <meta name="viewport" content="width=device-width">
-    <title>Tarea 1</title>
+    <title>Simple Page Application</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
+  <div id="app">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">  
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+              <a class="nav-link" href="#" v-on:click="selectTab('HOME')">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" href="#" v-on:click="selectTab('PROJECTS')">Projects</a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
+            <li class="nav-item">
+              <a class="nav-link" href="#" v-on:click="selectTab('SERVICES')">Services</a>
             </li>
-           
+            <li class="nav-item">
+              <a class="nav-link" href="#" v-on:click="selectTab('CONTACT')">Contact</a>
+            </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
+
         </div>
       </nav>
 
-      <br>
-      <br>
+      <div v-if="activeTab == 'HOME' " class="container">
+        <p>You choose {{activeTab}}</p>
+        <img src="https://www.cutislaxa.org/wp-content/uploads/2018/01/welcome.jpg" width="600px" height="auto" alt="">
+      </div>
+      <div v-if="activeTab == 'PROJECTS' " class="container">
 
-    <div class="container">
-        <div class="row">
-          <div class="col-md-4 col-sm-12 border border-danger">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel commodi dicta porro voluptas pariatur, optio nihil explicabo autem expedita totam. Nulla accusantium cupiditate veniam ullam illo eligendi ducimus ex vitae?
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#" v-on:click="showProjects('list')">List</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" v-on:click="showProjects('grid')">Grid</a>
+          </li>
+        </ul>
+
+        <div v-if="activeList == 'list'">
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img src="https://i.ytimg.com/vi/9QNUXxuwt1Y/maxresdefault.jpg"  class="card-img" height="200px" width="auto" alt="">
+
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="col-md-4 col-sm-12 border border-dark">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi modi quidem error amet neque fuga? Quam tenetur consectetur impedit explicabo, architecto expedita itaque fugiat. Provident similique quisquam voluptate consequatur natus!
+
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img src="https://i.ytimg.com/vi/9QNUXxuwt1Y/maxresdefault.jpg"  class="card-img" height="200px" width="auto" alt="">
+
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="col-md-4 col-sm-12 border border-warning">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, id officiis, perferendis rerum natus maiores blanditiis numquam dicta in nostrum impedit totam. Hic incidunt cumque fuga voluptatum et facilis molestiae!
+
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img src="https://i.ytimg.com/vi/9QNUXxuwt1Y/maxresdefault.jpg"  class="card-img" height="200px" width="auto" alt="">
+
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div v-else>
+          <div class="container">
+            <div class="row row-cols-4">
+              <div class="col">                
+                <img src="https://i.ytimg.com/vi/9QNUXxuwt1Y/maxresdefault.jpg"  class="card-img" height="200px" width="auto" alt="">
+              </div>
+              <div class="col">                
+                <img src="https://i.ytimg.com/vi/9QNUXxuwt1Y/maxresdefault.jpg"  class="card-img" height="200px" width="auto" alt="">
+              </div>
+              <div class="col">                
+                <img src="https://i.ytimg.com/vi/9QNUXxuwt1Y/maxresdefault.jpg"  class="card-img" height="200px" width="auto" alt="">
+              </div>
+            </div>
           </div>
         </div>
-    </div>
-
-      <br><br>
-
-      <div class="container">
-        <span class="border border-primary rounded-circle" style="padding: 15px; margin: 10px;"></span>
-        <span class="border border-secondary rounded-circle" style="padding: 15px; margin: 10px;"></span>
-        <span class="border border-success rounded-circle" style="padding: 15px; margin: 10px;"></span>
-        <span class="border border-danger rounded-circle" style="padding: 15px; margin: 10px;"></span>
-        <span class="border border-warning rounded-circle" style="padding: 15px; margin: 10px;"></span>
-        <span class="border border-info rounded-circle" style="padding: 15px; margin: 10px;"></span>
-        <span class="border border-dark rounded-circle" style="padding: 15px; margin: 10px;"></span>
       </div>
+      <div v-if="activeTab == 'SERVICES' " class="container">
+        <form id="" v-cloak>
+
+          <h1>Services</h1>
+      
+          <ul>
+              <!-- Loop through the services array, assign a click haendler, and set or
+                   remove the "active" css class if needed -->
+              <li v-for="service in services" v-on:click="toggleActive(service)" v-bind:class="{ 'active': service.active}">
+                  <!-- Display the name and price for every entry in the array .
+                      Vue.js has a built in currency filter for formatting the price -->
+                  {{service.name}} <span>{{service.price | currency}}</span>
+              </li>
+          </ul>
+      
+          <div class="total">
+              <!-- Calculate the total price of all chosen services. Format it as currency. -->
+              Total: <span>{{total() | currency}}</span>
+          </div>
+      
+      </form>
+      </div>
+      <div v-if="activeTab == 'CONTACT' " class="container">
+        <p>created by MarceloFlores</p>
+        <p>visit my github: <a href="https://github.com/MarceloFlores95">https://github.com/MarceloFlores95</a></p>
+        
+      </div>
+
+      
+        
+  </div>
+      
+      <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+      <script>
+        var app = new Vue({
+          el: '#app',
+          data: {
+            message: 'Hello Vue!',
+            activeTab: 'HOME',
+            activeList: 'list',
+            services: [
+                {
+                        name: 'Web Development',
+                        price: 300,
+                        active:true
+                },{
+                        name: 'Design',
+                        price: 400,
+                        active:false
+                },{
+                        name: 'Integration',
+                        price: 250,
+                        active:false
+                },{
+                        name: 'Training',
+                        price: 220,
+                        active:false
+                }
+        ]
+          },
+          methods: {
+            selectTab(selTab) {
+              console.log(selTab)
+              this.activeTab = selTab
+            },
+            showProjects(selPro) {
+              console.log(selPro)
+              this.activeList = selPro
+            },
+            addTodoItem: function() {
+              if(this.userInput !== "") {
+                this.todos.push(this.userInput);
+                this.userInput = "";
+              }
+            },
+            toggleActive: function(s){
+                s.active = !s.active;
+            },
+            total: function(){
+                var total = 0;
+                this.services.forEach(function(s){
+                        if (s.active){
+                                total+= s.price;
+                        }
+                    });
+              return total;
+            }
+          }
+        })
+      </script>
 </body>
 </html>
+
+<style>
+  /* list-input */
+input[type=text] {
+    padding: 5px;
+    margin: 0 10px;
+    border: 2px solid #ced4da;
+    border-radius: 4px;
+}
+
+/* list-stats */
+
+/* list-item */
+
+/* any item (used by list-item, list-input, list-stats */
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px 0;
+  padding: 12px 0 10px 10px;
+  background-color: #e9ecef;
+  box-shadow: 3px 3px 10px #e9ecef;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.1s ease-in-out;
+}
+
+.item:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 3px 3px 10px #d0ebff;
+  transition: all 0.1s ease-in-out;
+}
+
+.item p {
+  margin-bottom: 5px;
+  padding-left: 9px;
+}
+
+/* custom-header */
+header {
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header h1 {
+  padding: 8px;
+  font-size: 64px;
+}
+
+/* custom-main */
+main {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+#list-items-wrapper {
+  width: 85vw;
+  max-width: 600px;
+  min-width: 250px;
+}
+
+/* custom-footer */
+footer {
+  padding: 3px;
+  font-size: 16px;
+  margin: 10px;
+}
+
+footer p {
+  text-align: center;
+  font-size: 18px;
+}
+
+[v-cloak] {
+  display: none;
+}
+
+*{
+        margin:0;
+        padding:0;
+}
+
+body{
+        font:15px/1.3 'Open Sans', sans-serif;
+        color: #5e5b64;
+        text-align:center;
+}
+
+a, a:visited {
+        outline:none;
+        color:#389dc1;
+}
+
+a:hover{
+        text-decoration:none;
+}
+
+section, footer, header, aside, nav{
+        display: block;
+}
+
+/*-------------------------
+        The search input
+--------------------------*/
+
+.bar{
+        background-color:#5c9bb7;
+
+        background-image:-webkit-linear-gradient(top, #5c9bb7, #5392ad);
+        background-image:-moz-linear-gradient(top, #5c9bb7, #5392ad);
+        background-image:linear-gradient(top, #5c9bb7, #5392ad);
+
+        box-shadow: 0 1px 1px #ccc;
+        border-radius: 2px;
+        width: 580px;
+        padding: 10px;
+        margin: 45px auto 25px;
+        position:relative;
+        text-align:right;
+        line-height: 1;
+}
+
+.bar a{
+        background:#4987a1 center center no-repeat;
+        width:32px;
+        height:32px;
+        display:inline-block;
+        text-decoration:none !important;
+        margin-right:5px;
+        border-radius:2px;
+        cursor:pointer;
+}
+
+.bar a.active{
+        background-color:#c14694;
+}
+
+.bar a.list-icon{
+        background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkYzNkFCQ0ZBMTBCRTExRTM5NDk4RDFEM0E5RkQ1NEZCIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkYzNkFCQ0ZCMTBCRTExRTM5NDk4RDFEM0E5RkQ1NEZCIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RjM2QUJDRjgxMEJFMTFFMzk0OThEMUQzQTlGRDU0RkIiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RjM2QUJDRjkxMEJFMTFFMzk0OThEMUQzQTlGRDU0RkIiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7h1bLqAAAAWUlEQVR42mL8////BwYGBn4GCACxBRlIAIxAA/4jaXoPEkMyjJ+A/g9MDJQBRhYg8RFqMwg8RJIUINYLFDmBUi+ADQAF1n8ofk9yIAy6WPg4GgtDMRYAAgwAdLYwLAoIwPgAAAAASUVORK5CYII=);
+}
+
+.bar a.grid-icon{
+        background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjBEQkMyQzE0MTBCRjExRTNBMDlGRTYyOTlBNDdCN0I4IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjBEQkMyQzE1MTBCRjExRTNBMDlGRTYyOTlBNDdCN0I4Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MERCQzJDMTIxMEJGMTFFM0EwOUZFNjI5OUE0N0I3QjgiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MERCQzJDMTMxMEJGMTFFM0EwOUZFNjI5OUE0N0I3QjgiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4MjPshAAAAXklEQVR42mL4////h/8I8B6IGaCYKHFGEMnAwCDIAAHvgZgRyiZKnImBQsACxB+hNoDAQyQ5osQZIT4gH1DsBZABH6AB8x/JaQzEig++WPiII7Rxio/GwmCIBYAAAwAwVIzMp1R0aQAAAABJRU5ErkJggg==);
+}
+
+.bar input{
+        background:#fff no-repeat 13px 13px;
+
+        border: none;
+        width: 100%;
+        line-height: 19px;
+        padding: 11px 0;
+
+        border-radius: 2px;
+        box-shadow: 0 2px 8px #c4c4c4 inset;
+        text-align: left;
+        font-size: 14px;
+        font-family: inherit;
+        color: #738289;
+        font-weight: bold;
+        outline: none;
+        text-indent: 40px;
+}
+
+/*-------------------------
+        List layout
+--------------------------*/
+
+ul.list{
+        list-style: none;
+        width: 500px;
+        margin: 0 auto;
+        text-align: left;
+}
+
+ul.list li{
+        border-bottom: 1px solid #ddd;
+        padding: 10px;
+        overflow: hidden;
+}
+
+ul.list li img{
+        width:120px;
+        height:120px;
+        float:left;
+        border:none;
+}
+
+ul.list li p{
+        margin-left: 135px;
+        font-weight: bold;
+        color:#6e7a7f;
+}
+
+/*-------------------------
+        Grid layout
+--------------------------*/
+
+ul.grid{
+        list-style: none;
+        width: 570px;
+        margin: 0 auto;
+        text-align: left;
+}
+
+ul.grid li{
+        padding: 2px;
+        float:left;
+}
+
+ul.grid li img{
+        width:280px;
+        height:280px;
+        object-fit: cover;
+        display:block;
+        border:none;
+}
+/* cursor pointer when hovering over SVG */
+.svg-wrapper {
+  cursor: pointer;
+}
+
+/* svg changes size on hover and click */
+.svg-wrapper:hover svg {
+  transform: scale(1.05, 1.05);
+  transition: transform 0.2s ease-in-out; 
+}
+
+.svg-wrapper:active svg {
+  transform: scale(0.95, 0.95);
+  transition: transform 0.1s ease-in-out;
+}
+
+/* svg color, changes on hover of element with class `.item` */
+.item svg {
+  stroke: #adb5bd;
+  transition: stroke 0.1s ease-in-out;
+}
+
+.item:hover svg {
+  stroke: #495057;
+  transition: stroke 0.1s ease-in-out;
+}
+
+/* svg trashcan color changes on hover of trashcan */
+.item .trash-svg:hover svg {
+  stroke: #f03e3e;
+  transition: stroke 0.2s ease-in-out;
+}
+
+/* svg checkbox color green */
+.item .circle-svg svg {
+  stroke: #69db7c;
+  transition: stroke 0.2s ease-in-out;
+}
+
+.item .check-circle-svg svg {
+  stroke: #37b24d;
+  transition: stroke 0.2s ease-in-out;
+}
+
+/* make plus and trashcan svg go to right */
+.trash-svg, .plus-circle-svg {
+  margin-left: auto;
+  padding: 0 10px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: #343a40;
+  user-select: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lato', sans-serif;
+  color: #343a40
+}
+
+#app {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+  background-color: #f8f9fa;
+}
+
+[v-cloak] {
+  display: none;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Cookie);
+
+/* Hide un-compiled mustache bindings
+until the Vue instance is ready */
+
+[v-cloak] {
+  display: none;
+}
+
+*{
+        margin:0;
+        padding:0;
+}
+
+body{
+        font:15px/1.3 'Open Sans', sans-serif;
+        color: #5e5b64;
+        text-align:center;
+}
+
+a, a:visited {
+        outline:none;
+        color:#389dc1;
+}
+
+a:hover{
+        text-decoration:none;
+}
+
+section, footer, header, aside, nav{
+        display: block;
+}
+
+/*-------------------------
+        The order form
+--------------------------*/
+
+form{
+        background-color: #61a1bc;
+        border-radius: 2px;
+        box-shadow: 0 1px 1px #ccc;
+        width: 400px;
+        padding: 35px 60px;
+        margin: 50px auto;
+}
+
+form h1{
+        color:#fff;
+        font-size:64px;
+        font-family:'Cookie', cursive;
+        font-weight: normal;
+        line-height:1;
+        text-shadow:0 3px 0 rgba(0,0,0,0.1);
+}
+
+form ul{
+        list-style:none;
+        color:#fff;
+        font-size:20px;
+        font-weight:bold;
+        text-align: left;
+        margin:20px 0 15px;
+}
+
+form ul li{
+        padding:20px 30px;
+        background-color:#e35885;
+        margin-bottom:8px;
+        box-shadow:0 1px 1px rgba(0,0,0,0.1);
+        cursor:pointer;
+}
+
+form ul li span{
+        float:right;
+}
+
+form ul li.active{
+        background-color:#8ec16d;
+}
+
+div.total{
+        border-top:1px solid rgba(255,255,255,0.5);
+        padding:15px 30px;
+        font-size:20px;
+        font-weight:bold;
+        text-align: left;
+        color:#fff;
+}
+
+div.total span{
+        float:right;
+}
+</style>
